@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Festival da Primavera 2026 - Sistema de Gestão</title>
+    <title>Bjotinhas em Movimento - Sistema de Gestão</title>
     <style>
         :root {
             --cor-verde-tema: #1e5622;
@@ -51,140 +51,80 @@
         }
         .logo-box {
             background: white;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 100px;
-            height: 60px;
+            min-width: 140px;
+            height: 70px;
+            border: 2px dashed #b2bec3;
+            cursor: pointer;
         }
-        .logo-box img { max-height: 50px; max-width: 100%; object-fit: contain; }
-        .header-info h1 { font-size: 26px; font-weight: bold; margin-bottom: 2px; }
-        .header-info h2 { font-size: 14px; font-weight: normal; opacity: 0.85; }
+        .logo-box img { max-height: 60px; max-width: 100%; object-fit: contain; }
+        .header-info h1 { font-size: 28px; font-weight: bold; margin-bottom: 2px; }
+        .header-info h2 { font-size: 15px; font-weight: normal; opacity: 0.9; }
 
-        /* NAVEGAÇÃO / ABAS */
+        /* NAVEGAÇÃO / ABAS EM 2 LINHAS HAS/GRID */
         .nav-tabs-container {
             background-color: #ffffff;
-            padding: 10px 20px;
-            display: flex;
-            gap: 6px;
-            overflow-x: auto;
+            padding: 12px 20px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
             border-bottom: 1px solid #e0e0e0;
         }
+
+        @media (max-width: 900px) {
+            .nav-tabs-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            border-radius: 8px;
             font-weight: 600;
-            color: #5f6368;
+            color: #4a5568;
             cursor: pointer;
-            white-space: nowrap;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             font-size: 13px;
+            text-align: center;
+            transition: all 0.2s ease;
         }
+        .tab-btn:hover { background-color: #edf2f7; }
         .tab-btn.active {
             background-color: var(--cor-verde-tema);
             color: #ffffff;
+            border-color: var(--cor-verde-tema);
         }
 
-        /* CONTEÚDO PRINCIPAL (CARD) */
-        .main-container {
-            max-width: 1100px;
-            margin: 25px auto;
-            padding: 0 15px;
-        }
-        .card-panel {
-            background: var(--cor-card-fundo);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
+        /* CONTEÚDO PRINCIPAL */
+        .main-container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
+        .card-panel { background: var(--cor-card-fundo); border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
 
-        .section-title {
-            font-size: 18px;
-            color: var(--cor-verde-tema);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f0f0f0;
-        }
+        .section-title { font-size: 18px; color: var(--cor-verde-tema); font-weight: bold; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
 
-        /* FORMULÁRIOS DA INTERFACE */
+        /* FORMULÁRIOS */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 6px; color: #333; font-size: 13px; }
-        select, input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #dcdcdc;
-            border-radius: 8px;
-            outline: none;
-            font-size: 14px;
-            background-color: #fbfbfb;
-        }
-        select:focus, input:focus { border-color: var(--cor-verde-tema); background-color: #fff; }
+        select, input[type="text"], input[type="number"] { width: 100%; padding: 10px 12px; border: 1px solid #dcdcdc; border-radius: 8px; outline: none; font-size: 14px; background-color: #fbfbfb; }
 
         .row-inline { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
         .col-flex { flex: 1; min-width: 200px; }
 
-        .btn-add {
-            background-color: var(--cor-verde-tema);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            height: 40px;
-        }
-        .btn-add:hover { background-color: var(--cor-verde-hover); }
-
-        .btn-refazer {
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            padding: 9px 16px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-        }
+        .btn-add { background-color: var(--cor-verde-tema); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; height: 40px; }
+        .btn-refazer { background-color: #f39c12; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
 
         /* GRID DAS EQUIPES */
-        .sub-header-alunos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 25px 0 15px 0;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .sub-header-alunos h3 { font-size: 16px; color: var(--cor-verde-tema); font-weight: bold; }
-
-        .grid-equipes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-        .card-cor {
-            border-radius: 10px;
-            padding: 15px;
-            color: white;
-            min-height: 150px;
-        }
+        .sub-header-alunos { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; flex-wrap: wrap; gap: 10px; }
+        .grid-equipes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .card-cor { border-radius: 10px; padding: 15px; color: white; min-height: 150px; }
         .card-cor.verde { background-color: var(--cor-verde-equipe); }
         .card-cor.amarelo { background-color: var(--cor-amarelo-equipe); }
         .card-cor.vermelho { background-color: var(--cor-vermelho-equipe); }
@@ -192,22 +132,11 @@
 
         .card-cor h4 { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
         .card-cor ul { list-style: none; }
-        .card-cor li {
-            background: rgba(255, 255, 255, 0.18);
-            margin-bottom: 6px;
-            padding: 6px 10px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
+        .card-cor li { background: rgba(255, 255, 255, 0.18); margin-bottom: 6px; padding: 6px 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
         .btn-del-item { background: transparent; border: none; color: white; cursor: pointer; font-size: 12px; font-weight: bold; opacity: 0.8; }
-        .btn-del-item:hover { opacity: 1; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px; text-align: left; }
         th { background-color: #f8f9fa; font-weight: bold; }
@@ -220,7 +149,7 @@
         <div class="top-bar-left">
             🏆 Campeonato Ativo:
             <select id="select-campeonato-ativo">
-                <option>Festival da Primavera - Colégio Bom Jesus</option>
+                <option>Bjotinhas em Movimento</option>
             </select>
         </div>
         <div class="top-bar-right">
@@ -230,38 +159,44 @@
         </div>
     </div>
 
-    <!-- CABEÇALHO COM TEMA VERDE -->
+    <!-- CABEÇALHO COM LOGO E TÍTULO SOLICITADO -->
     <header class="header-verde">
-        <div class="logo-box">
-            <img id="logo-exibicao" src="" alt="Logo" style="display:none;" />
-            <span id="logo-placeholder" style="color:#277e33; font-weight:bold; text-align:center; font-size:11px;">Bom Jesus<br><small style="font-size:8px;">AMOR E SABEDORIA</small></span>
+        <div class="logo-box" onclick="document.getElementById('file-logo-input').click()" title="Clique para alterar a logo">
+            <img id="logo-exibicao" src="" alt="Logo do Colégio" style="display:none;" />
+            <span id="logo-placeholder" style="color:#7f8c8d; font-weight:bold; text-align:center; font-size:12px;"> Espaço para Logo do Colégio<br><small style="font-size:10px; color:#a0aec0;">(Clique p/ Inserir)</small></span>
         </div>
+        <input type="file" id="file-logo-input" accept="image/*" style="display:none;" onchange="carregarImagemLogo(event)">
+
         <div class="header-info">
-            <h1 id="titulo-exibicao">Festival da Primavera 2026</h1>
-            <h2 id="subtitulo-exibicao">Colégio Bom Jesus Maringá</h2>
+            <h1 id="titulo-exibicao">Bjotinhas em Movimento</h1>
+            <h2 id="subtitulo-exibicao">Colégio Bom Jesus</h2>
         </div>
     </header>
 
-    <!-- MENU DE ABAS -->
+    <!-- MENU DE ABAS EM DUAS LINHAS -->
     <div class="nav-tabs-container">
+        <!-- LINHA 1 -->
         <button class="tab-btn" onclick="abrirAba('aba-classificacao-geral')">🏆 Classificação Geral</button>
         <button class="tab-btn" onclick="abrirAba('aba-classificacao-turma')">📊 Classificação por Turma</button>
         <button class="tab-btn" onclick="abrirAba('aba-cadastrar-turmas')">🏫 Cadastrar Turmas</button>
         <button class="tab-btn active" onclick="abrirAba('aba-alunos-turma')">👨‍🎓 Alunos por Turma</button>
         <button class="tab-btn" onclick="abrirAba('aba-geral-cores')">🎨 Alunos por Cor (Geral)</button>
         <button class="tab-btn" onclick="abrirAba('aba-lote-sorteio')">🎲 Cadastro em Lote e Sorteio</button>
+
+        <!-- LINHA 2 -->
         <button class="tab-btn" onclick="abrirAba('aba-provas')">🎯 Cadastrar Provas</button>
         <button class="tab-btn" onclick="abrirAba('aba-rodadas')">⚡ Lançar/Editar Rodadas</button>
         <button class="tab-btn" onclick="abrirAba('aba-arrecadacao')">📦 Arrecadação</button>
         <button class="tab-btn" onclick="abrirAba('aba-boletim')">🖨️ Boletins Informativos</button>
         <button class="tab-btn" onclick="abrirAba('aba-config')">✏️ Editar Cabeçalho</button>
+        <button class="tab-btn" onclick="abrirAba('aba-fotos')">📷 Personalização & Fotos</button>
     </div>
 
     <!-- ÁREA DE CONTEÚDO PRINCIPAL -->
     <div class="main-container">
         <div class="card-panel">
 
-            <!-- ABA: ALUNOS POR TURMA (DESIGN CORRESPONDENTE À IMAGEM) -->
+            <!-- ABA: ALUNOS POR TURMA -->
             <div id="aba-alunos-turma" class="tab-content active">
                 <div class="section-title">
                     👨‍🎓 Visualizar e Gerenciar Alunos da Turma
@@ -293,7 +228,7 @@
                     </div>
 
                     <div class="sub-header-alunos">
-                        <h3 id="titulo-turma-selecionada">Alunos da Turma</h3>
+                        <h3 id="titulo-turma-selecionada" style="color:var(--cor-verde-tema); font-weight:bold;">Alunos da Turma</h3>
                         <button class="btn-refazer" onclick="refazerSorteioDaTurmaAtual()">🎲 Refazer Sorteio Desta Turma</button>
                     </div>
 
@@ -301,7 +236,7 @@
                 </div>
             </div>
 
-            <!-- OUTRAS ABAS FUNCIONAIS -->
+            <!-- OUTRAS ABAS -->
             <div id="aba-cadastrar-turmas" class="tab-content">
                 <div class="section-title">🏫 Cadastrar Turma</div>
                 <div class="form-group">
@@ -345,11 +280,11 @@
         </div>
     </div>
 
-    <!-- LOGICA EM JAVASCRIPT -->
+    <!-- CÓDIGO JAVASCRIPT -->
     <script>
         const CORES = ['Verde', 'Amarelo', 'Vermelho', 'Azul'];
         let dados = {
-            config: { titulo: "Festival da Primavera 2026", subtitulo: "Colégio Bom Jesus Maringá", logoEvento: "" },
+            config: { titulo: "Bjotinhas em Movimento", subtitulo: "Colégio Bom Jesus", logoEvento: "" },
             turmas: [
                 { id: 1, nome: "2º Ano 02", alunos: { Verde: ["João Silva"], Amarelo: ["Maria Oliveira"], Vermelho: [], Azul: [] } }
             ],
@@ -358,9 +293,7 @@
             arrecadacao: []
         };
 
-        function salvarDados() {
-            localStorage.setItem('bjotinhas_dados', JSON.stringify(dados));
-        }
+        function salvarDados() { localStorage.setItem('bjotinhas_dados', JSON.stringify(dados)); }
 
         function carregarDados() {
             const salvo = localStorage.getItem('bjotinhas_dados');
@@ -377,8 +310,8 @@
         }
 
         function restaurarInterface() {
-            document.getElementById('titulo-exibicao').innerText = dados.config.titulo;
-            document.getElementById('subtitulo-exibicao').innerText = dados.config.subtitulo;
+            document.getElementById('titulo-exibicao').innerText = dados.config.titulo || "Bjotinhas em Movimento";
+            document.getElementById('subtitulo-exibicao').innerText = dados.config.subtitulo || "Colégio Bom Jesus";
             
             const logo = document.getElementById('logo-exibicao');
             const placeholder = document.getElementById('logo-placeholder');
@@ -397,14 +330,25 @@
             carregarAlunosDaTurma();
         }
 
+        function carregarImagemLogo(evt) {
+            const file = evt.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    dados.config.logoEvento = e.target.result;
+                    salvarDados();
+                    restaurarInterface();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         function atualizarSelects() {
             const selTurma = document.getElementById('select-visualizar-turma');
             if (selTurma) {
                 const valAtual = selTurma.value;
                 selTurma.innerHTML = '<option value="">Selecione a Turma...</option>';
-                dados.turmas.forEach(t => {
-                    selTurma.innerHTML += `<option value="${t.id}">${t.nome}</option>`;
-                });
+                dados.turmas.forEach(t => { selTurma.innerHTML += `<option value="${t.id}">${t.nome}</option>`; });
                 selTurma.value = valAtual || (dados.turmas[0] ? dados.turmas[0].id : "");
             }
         }
@@ -423,10 +367,7 @@
             if (!tbody) return;
             tbody.innerHTML = '';
             dados.turmas.forEach(t => {
-                tbody.innerHTML += `<tr>
-                    <td><strong>${t.nome}</strong></td>
-                    <td><button style="color:red; cursor:pointer;" onclick="excluirTurma(${t.id})">Excluir</button></td>
-                </tr>`;
+                tbody.innerHTML += `<tr><td><strong>${t.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirTurma(${t.id})">Excluir</button></td></tr>`;
             });
         }
 
@@ -454,12 +395,7 @@
                     `<li><span>${aluno}</span><button class="btn-del-item" onclick="removerAlunoManual('${cor}', ${idx})">✕</button></li>`
                 ).join('');
 
-                grid.innerHTML += `
-                    <div class="card-cor ${cor.toLowerCase()}">
-                        <h4>${cor} (${lista.length})</h4>
-                        <ul>${itensLi || '<li style="opacity:0.7">Nenhum aluno</li>'}</ul>
-                    </div>
-                `;
+                grid.innerHTML += `<div class="card-cor ${cor.toLowerCase()}"><h4>${cor} (${lista.length})</h4><ul>${itensLi || '<li style="opacity:0.7">Nenhum aluno</li>'}</ul></div>`;
             });
 
             painel.style.display = 'block';
@@ -500,7 +436,7 @@
 
             let todos = [];
             CORES.forEach(c => { todos = todos.concat(turma.alunos[c] || []); });
-            if (todos.length === 0) return alert('Não há alunos cadastrados nesta turma para sortear!');
+            if (todos.length === 0) return alert('Não há alunos cadastrados para sortear!');
 
             todos.sort(() => Math.random() - 0.5);
             turma.alunos = { Verde: [], Amarelo: [], Vermelho: [], Azul: [] };
@@ -521,24 +457,19 @@
                         t.alunos[cor].forEach(a => todosAlunos.push(`${a} <small>(${t.nome})</small>`));
                     }
                 });
-                grid.innerHTML += `<div class="card-cor ${cor.toLowerCase()}">
-                    <h4>Equipe ${cor} (${todosAlunos.length})</h4>
-                    <ul>${todosAlunos.map(a => `<li>${a}</li>`).join('') || '<li>Sem alunos</li>'}</ul>
-                </div>`;
+                grid.innerHTML += `<div class="card-cor ${cor.toLowerCase()}"><h4>Equipe ${cor} (${todosAlunos.length})</h4><ul>${todosAlunos.map(a => `<li>${a}</li>`).join('') || '<li>Sem alunos</li>'}</ul></div>`;
             });
         }
 
         function salvarTextosCabecalho() {
             dados.config.titulo = document.getElementById('input-edit-titulo-cabecalho').value;
             dados.config.subtitulo = document.getElementById('input-edit-subtitulo-cabecalho').value;
-            salvarDados();
-            restaurarInterface();
-            alert('Configurações salvas!');
+            salvarDados(); restaurarInterface(); alert('Salvo com sucesso!');
         }
 
-        function criarCampeonatoDoZero() { if (confirm("Deseja apagar tudo e iniciar um novo campeonato zerado?")) { localStorage.removeItem('bjotinhas_dados'); location.reload(); } }
-        function reutilizarEstruturaProximoAno() { if (confirm("Manter as turmas e limpar alunos e pontuações?")) { dados.rodadas = []; dados.arrecadacao = []; dados.turmas.forEach(t => t.alunos = {Verde:[],Amarelo:[],Vermelho:[],Azul:[]}); salvarDados(); restaurarInterface(); } }
-        function zerarSelecionados() { alert("Utilize as opções de limpeza no menu Editar Cabeçalho / Configurações."); }
+        function criarCampeonatoDoZero() { if (confirm("Deseja zerar tudo?")) { localStorage.removeItem('bjotinhas_dados'); location.reload(); } }
+        function reutilizarEstruturaProximoAno() { if (confirm("Limpar alunos e pontuações?")) { dados.rodadas = []; dados.arrecadacao = []; dados.turmas.forEach(t => t.alunos = {Verde:[],Amarelo:[],Vermelho:[],Azul:[]}); salvarDados(); restaurarInterface(); } }
+        function zerarSelecionados() { alert("Utilize o menu de configurações."); }
 
         window.onload = carregarDados;
     </script>
