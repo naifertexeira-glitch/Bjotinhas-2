@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bjotinhas em Movimento - Sistema de Gestão</title>
+    <title>Bjotinhas em Movimento - Sistema Completo</title>
     <style>
         :root {
             --cor-verde-tema: #1e5622;
@@ -19,7 +19,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
         body { background-color: var(--cor-fundo-site); color: #333; font-size: 14px; }
 
-        /* BARRA SUPERIOR DE AÇÕES */
+        /* BARRA SUPERIOR */
         .top-bar {
             background-color: #f1f3f4;
             padding: 10px 20px;
@@ -34,13 +34,12 @@
         .top-bar-left select { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-weight: bold; font-size: 14px; background: #fff; }
         .top-bar-right { display: flex; gap: 8px; flex-wrap: wrap; }
 
-        /* BOTOES TOP BAR */
         .btn-top { border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; color: #fff; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; }
         .btn-top-green { background-color: #277e33; }
         .btn-top-orange { background-color: #f39c12; }
         .btn-top-red { background-color: #e74c3c; }
 
-        /* CABEÇALHO VERDE */
+        /* CABEÇALHO */
         header.header-verde {
             background-color: var(--cor-verde-tema);
             color: white;
@@ -65,7 +64,7 @@
         .header-info h1 { font-size: 28px; font-weight: bold; margin-bottom: 2px; }
         .header-info h2 { font-size: 15px; font-weight: normal; opacity: 0.9; }
 
-        /* NAVEGAÇÃO / ABAS EM 2 LINHAS HAS/GRID */
+        /* ABAS EM DUAS LINHAS */
         .nav-tabs-container {
             background-color: #ffffff;
             padding: 12px 20px;
@@ -76,9 +75,7 @@
         }
 
         @media (max-width: 900px) {
-            .nav-tabs-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .nav-tabs-container { grid-template-columns: repeat(3, 1fr); }
         }
 
         .tab-btn {
@@ -104,25 +101,23 @@
             border-color: var(--cor-verde-tema);
         }
 
-        /* CONTEÚDO PRINCIPAL */
+        /* CARD PRINCIPAL */
         .main-container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
         .card-panel { background: var(--cor-card-fundo); border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-
         .section-title { font-size: 18px; color: var(--cor-verde-tema); font-weight: bold; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
 
-        /* FORMULÁRIOS */
+        /* FORMULÁRIOS & TABELAS */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 6px; color: #333; font-size: 13px; }
-        select, input[type="text"], input[type="number"] { width: 100%; padding: 10px 12px; border: 1px solid #dcdcdc; border-radius: 8px; outline: none; font-size: 14px; background-color: #fbfbfb; }
+        select, input[type="text"], input[type="number"], textarea { width: 100%; padding: 10px 12px; border: 1px solid #dcdcdc; border-radius: 8px; outline: none; font-size: 14px; background-color: #fbfbfb; }
+        textarea { resize: vertical; min-height: 120px; }
 
         .row-inline { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
         .col-flex { flex: 1; min-width: 200px; }
 
-        .btn-add { background-color: var(--cor-verde-tema); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; height: 40px; }
+        .btn-add { background-color: var(--cor-verde-tema); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
         .btn-refazer { background-color: #f39c12; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
 
-        /* GRID DAS EQUIPES */
-        .sub-header-alunos { display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; flex-wrap: wrap; gap: 10px; }
         .grid-equipes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
         .card-cor { border-radius: 10px; padding: 15px; color: white; min-height: 150px; }
         .card-cor.verde { background-color: var(--cor-verde-equipe); }
@@ -133,18 +128,24 @@
         .card-cor h4 { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
         .card-cor ul { list-style: none; }
         .card-cor li { background: rgba(255, 255, 255, 0.18); margin-bottom: 6px; padding: 6px 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
-        .btn-del-item { background: transparent; border: none; color: white; cursor: pointer; font-size: 12px; font-weight: bold; opacity: 0.8; }
+        .btn-del-item { background: transparent; border: none; color: white; cursor: pointer; font-size: 12px; font-weight: bold; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { border: 1px solid #e0e0e0; padding: 10px; text-align: left; }
         th { background-color: #f8f9fa; font-weight: bold; }
+
+        @media print {
+            .top-bar, .nav-tabs-container, .btn-add, .btn-refazer, .btn-top, button { display: none !important; }
+            body { background: white; }
+            .card-panel { border: none; box-shadow: none; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR DE AÇÕES -->
+    <!-- BARRA SUPERIOR -->
     <div class="top-bar">
         <div class="top-bar-left">
             🏆 Campeonato Ativo:
@@ -153,17 +154,17 @@
             </select>
         </div>
         <div class="top-bar-right">
-            <button class="btn-top btn-top-green" onclick="criarCampeonatoDoZero()">➕ Criar Novo Campeonato (Zerado)</button>
-            <button class="btn-top btn-top-orange" onclick="reutilizarEstruturaProximoAno()">📋 Reutilizar Estrutura Para Novo Ano</button>
-            <button class="btn-top btn-top-red" onclick="zerarSelecionados()">🗑️ Excluir Selecionado</button>
+            <button class="btn-top btn-top-green" onclick="criarCampeonatoDoZero()">➕ Criar Novo Campeonato</button>
+            <button class="btn-top btn-top-orange" onclick="reutilizarEstruturaProximoAno()">📋 Reutilizar Estrutura</button>
+            <button class="btn-top btn-top-red" onclick="limparTudoComConfirmacao()">🗑️ Zerar Sistema</button>
         </div>
     </div>
 
-    <!-- CABEÇALHO COM LOGO E TÍTULO SOLICITADO -->
+    <!-- CABEÇALHO -->
     <header class="header-verde">
         <div class="logo-box" onclick="document.getElementById('file-logo-input').click()" title="Clique para alterar a logo">
             <img id="logo-exibicao" src="" alt="Logo do Colégio" style="display:none;" />
-            <span id="logo-placeholder" style="color:#7f8c8d; font-weight:bold; text-align:center; font-size:12px;"> Espaço para Logo do Colégio<br><small style="font-size:10px; color:#a0aec0;">(Clique p/ Inserir)</small></span>
+            <span id="logo-placeholder" style="color:#7f8c8d; font-weight:bold; text-align:center; font-size:12px;">Espaço p/ Logo<br><small style="font-size:10px; color:#a0aec0;">(Clique p/ Inserir)</small></span>
         </div>
         <input type="file" id="file-logo-input" accept="image/*" style="display:none;" onchange="carregarImagemLogo(event)">
 
@@ -173,42 +174,82 @@
         </div>
     </header>
 
-    <!-- MENU DE ABAS EM DUAS LINHAS -->
+    <!-- NAVEGAÇÃO / ABAS (LINHAS 1 E 2) -->
     <div class="nav-tabs-container">
         <!-- LINHA 1 -->
-        <button class="tab-btn" onclick="abrirAba('aba-classificacao-geral')">🏆 Classificação Geral</button>
+        <button class="tab-btn active" onclick="abrirAba('aba-classificacao-geral')">🏆 Classificação Geral</button>
         <button class="tab-btn" onclick="abrirAba('aba-classificacao-turma')">📊 Classificação por Turma</button>
         <button class="tab-btn" onclick="abrirAba('aba-cadastrar-turmas')">🏫 Cadastrar Turmas</button>
-        <button class="tab-btn active" onclick="abrirAba('aba-alunos-turma')">👨‍🎓 Alunos por Turma</button>
+        <button class="tab-btn" onclick="abrirAba('aba-alunos-turma')">👨‍🎓 Alunos por Turma</button>
         <button class="tab-btn" onclick="abrirAba('aba-geral-cores')">🎨 Alunos por Cor (Geral)</button>
-        <button class="tab-btn" onclick="abrirAba('aba-lote-sorteio')">🎲 Cadastro em Lote e Sorteio</button>
+        <button class="tab-btn" onclick="abrirAba('aba-lote-sorteio')">🎲 Lote e Sorteio</button>
 
         <!-- LINHA 2 -->
         <button class="tab-btn" onclick="abrirAba('aba-provas')">🎯 Cadastrar Provas</button>
-        <button class="tab-btn" onclick="abrirAba('aba-rodadas')">⚡ Lançar/Editar Rodadas</button>
+        <button class="tab-btn" onclick="abrirAba('aba-rodadas')">⚡ Lançar Rodadas</button>
         <button class="tab-btn" onclick="abrirAba('aba-arrecadacao')">📦 Arrecadação</button>
         <button class="tab-btn" onclick="abrirAba('aba-boletim')">🖨️ Boletins Informativos</button>
         <button class="tab-btn" onclick="abrirAba('aba-config')">✏️ Editar Cabeçalho</button>
-        <button class="tab-btn" onclick="abrirAba('aba-fotos')">📷 Personalização & Fotos</button>
+        <button class="tab-btn" onclick="window.print()">🖨️ Imprimir Tela</button>
     </div>
 
-    <!-- ÁREA DE CONTEÚDO PRINCIPAL -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <div class="main-container">
         <div class="card-panel">
 
-            <!-- ABA: ALUNOS POR TURMA -->
-            <div id="aba-alunos-turma" class="tab-content active">
-                <div class="section-title">
-                    👨‍🎓 Visualizar e Gerenciar Alunos da Turma
-                </div>
+            <!-- 1. CLASSIFICAÇÃO GERAL -->
+            <div id="aba-classificacao-geral" class="tab-content active">
+                <div class="section-title">🏆 Classificação Geral das Equipes</div>
+                <table>
+                    <thead>
+                        <tr><th>Posição</th><th>Equipe</th><th>Pontuação Total</th></tr>
+                    </thead>
+                    <tbody id="tabela-classificacao-geral"></tbody>
+                </table>
+            </div>
 
+            <!-- 2. CLASSIFICAÇÃO POR TURMA -->
+            <div id="aba-classificacao-turma" class="tab-content">
+                <div class="section-title">📊 Pontuação Detalhada por Turma</div>
+                <div class="form-group">
+                    <label>Selecione a Turma:</label>
+                    <select id="select-filtro-turma-placar" onchange="renderizarClassificacaoPorTurma()">
+                        <option value="">Selecione...</option>
+                    </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr><th>Equipe / Cor</th><th>Pontos de Provas</th><th>Pontos de Arrecadação</th><th>Total</th></tr>
+                    </thead>
+                    <tbody id="tabela-classificacao-turma-corpo"></tbody>
+                </table>
+            </div>
+
+            <!-- 3. CADASTRAR TURMAS -->
+            <div id="aba-cadastrar-turmas" class="tab-content">
+                <div class="section-title">🏫 Cadastrar e Gerenciar Turmas</div>
+                <div class="row-inline form-group">
+                    <div class="col-flex">
+                        <label>Nome da Turma:</label>
+                        <input type="text" id="input-nome-turma" placeholder="Ex: 2º Ano 02">
+                    </div>
+                    <button class="btn-add" onclick="cadastrarTurma()">➕ Cadastrar Turma</button>
+                </div>
+                <table>
+                    <thead><tr><th>Turma</th><th>Ações</th></tr></thead>
+                    <tbody id="tabela-turmas-corpo"></tbody>
+                </table>
+            </div>
+
+            <!-- 4. ALUNOS POR TURMA -->
+            <div id="aba-alunos-turma" class="tab-content">
+                <div class="section-title">👨‍🎓 Gerenciar Alunos da Turma</div>
                 <div class="form-group">
                     <label>Selecione a Turma:</label>
                     <select id="select-visualizar-turma" onchange="carregarAlunosDaTurma()">
                         <option value="">Selecione...</option>
                     </select>
                 </div>
-
                 <div id="painel-detalhes-turma" style="display:none; background: #fdfdfd; border: 1px solid #f0f0f0; padding: 18px; border-radius: 10px; margin-top: 15px;">
                     <div class="row-inline">
                         <div class="col-flex" style="flex: 2;">
@@ -224,63 +265,138 @@
                                 <option value="Azul">Azul</option>
                             </select>
                         </div>
-                        <button class="btn-add" onclick="adicionarAlunoManual()">➕ Adicionar Aluno</button>
+                        <button class="btn-add" onclick="adicionarAlunoManual()">➕ Adicionar</button>
                     </div>
-
-                    <div class="sub-header-alunos">
-                        <h3 id="titulo-turma-selecionada" style="color:var(--cor-verde-tema); font-weight:bold;">Alunos da Turma</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin: 20px 0 10px 0;">
+                        <h3 id="titulo-turma-selecionada" style="color:var(--cor-verde-tema);">Alunos da Turma</h3>
                         <button class="btn-refazer" onclick="refazerSorteioDaTurmaAtual()">🎲 Refazer Sorteio Desta Turma</button>
                     </div>
-
                     <div id="grid-cards-turma" class="grid-equipes"></div>
                 </div>
             </div>
 
-            <!-- OUTRAS ABAS -->
-            <div id="aba-cadastrar-turmas" class="tab-content">
-                <div class="section-title">🏫 Cadastrar Turma</div>
-                <div class="form-group">
-                    <label>Nome da Turma:</label>
-                    <input type="text" id="input-nome-turma" placeholder="Ex: 2º Ano 02">
-                </div>
-                <button class="btn-add" onclick="cadastrarTurma()">Cadastrar Turma</button>
-                <h3 style="margin-top:20px;">Turmas Cadastradas</h3>
-                <table>
-                    <thead><tr><th>Turma</th><th>Ações</th></tr></thead>
-                    <tbody id="tabela-turmas-corpo"></tbody>
-                </table>
-            </div>
-
+            <!-- 5. ALUNOS POR COR (GERAL) -->
             <div id="aba-geral-cores" class="tab-content">
-                <div class="section-title">🎨 Visão Geral dos Alunos por Equipes</div>
+                <div class="section-title">🎨 Visão Geral dos Alunos por Equipe</div>
                 <div id="grid-geral-cores" class="grid-equipes"></div>
             </div>
 
-            <div id="aba-classificacao-geral" class="tab-content">
-                <div class="section-title">🏆 Classificação Geral do Campeonato</div>
+            <!-- 6. CADASTRO EM LOTE E SORTEIO -->
+            <div id="aba-lote-sorteio" class="tab-content">
+                <div class="section-title">🎲 Importação em Lote e Sorteio de Cores</div>
+                <div class="form-group">
+                    <label>Selecione a Turma:</label>
+                    <select id="select-turma-lote"><option value="">Selecione...</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Cole a Lista de Alunos (um nome por linha):</label>
+                    <textarea id="textarea-alunos-lote" placeholder="Exemplo:&#10;Ana Souza&#10;Bruno Lima&#10;Carlos Eduardo"></textarea>
+                </div>
+                <button class="btn-add" onclick="processarLoteESortear()">🎲 Sortear e Cadastrar Alunos</button>
+            </div>
+
+            <!-- 7. CADASTRAR PROVAS -->
+            <div id="aba-provas" class="tab-content">
+                <div class="section-title">🎯 Cadastrar Modalidades e Provas</div>
+                <div class="row-inline form-group">
+                    <div class="col-flex">
+                        <label>Nome da Prova / Modalidade:</label>
+                        <input type="text" id="input-nome-prova" placeholder="Ex: Corrida de Saco, Cabo de Guerra">
+                    </div>
+                    <button class="btn-add" onclick="cadastrarProva()">➕ Salvar Prova</button>
+                </div>
                 <table>
-                    <thead><tr><th>Posição</th><th>Equipe</th><th>Pontuação Total</th></tr></thead>
-                    <tbody id="tabela-classificacao-geral"></tbody>
+                    <thead><tr><th>Nome da Prova</th><th>Ações</th></tr></thead>
+                    <tbody id="tabela-provas-corpo"></tbody>
                 </table>
             </div>
 
+            <!-- 8. LANÇAR RODADAS -->
+            <div id="aba-rodadas" class="tab-content">
+                <div class="section-title">⚡ Lançar Pontuação de Rodada</div>
+                <div class="row-inline form-group">
+                    <div class="col-flex">
+                        <label>Turma:</label>
+                        <select id="select-rodada-turma"><option value="">Selecione...</option></select>
+                    </div>
+                    <div class="col-flex">
+                        <label>Prova:</label>
+                        <select id="select-rodada-prova"><option value="">Selecione...</option></select>
+                    </div>
+                </div>
+                <div class="row-inline form-group">
+                    <div class="col-flex"><label>Pontos Verde:</label><input type="number" id="pts-verde" value="0"></div>
+                    <div class="col-flex"><label>Pontos Amarelo:</label><input type="number" id="pts-amarelo" value="0"></div>
+                    <div class="col-flex"><label>Pontos Vermelho:</label><input type="number" id="pts-vermelho" value="0"></div>
+                    <div class="col-flex"><label>Pontos Azul:</label><input type="number" id="pts-azul" value="0"></div>
+                </div>
+                <button class="btn-add" onclick="salvarRodada()">💾 Registrar Pontuação</button>
+                <h3 style="margin-top:25px;">Histórico de Rodadas</h3>
+                <table>
+                    <thead><tr><th>Turma</th><th>Prova</th><th>Verde</th><th>Amarelo</th><th>Vermelho</th><th>Azul</th><th>Ações</th></tr></thead>
+                    <tbody id="tabela-rodadas-corpo"></tbody>
+                </table>
+            </div>
+
+            <!-- 9. ARRECADAÇÃO -->
+            <div id="aba-arrecadacao" class="tab-content">
+                <div class="section-title">📦 Lançar Pontos de Arrecadação/Tarefas</div>
+                <div class="row-inline form-group">
+                    <div class="col-flex">
+                        <label>Turma:</label>
+                        <select id="select-arrecadacao-turma"><option value="">Selecione...</option></select>
+                    </div>
+                    <div class="col-flex">
+                        <label>Descrição da Tarefa:</label>
+                        <input type="text" id="input-arrecadacao-desc" placeholder="Ex: Doação de Alimentos">
+                    </div>
+                </div>
+                <div class="row-inline form-group">
+                    <div class="col-flex"><label>Pontos Verde:</label><input type="number" id="arr-verde" value="0"></div>
+                    <div class="col-flex"><label>Pontos Amarelo:</label><input type="number" id="arr-amarelo" value="0"></div>
+                    <div class="col-flex"><label>Pontos Vermelho:</label><input type="number" id="arr-vermelho" value="0"></div>
+                    <div class="col-flex"><label>Pontos Azul:</label><input type="number" id="arr-azul" value="0"></div>
+                </div>
+                <button class="btn-add" onclick="salvarArrecadacao()">💾 Salvar Arrecadação</button>
+                <h3 style="margin-top:25px;">Registros de Arrecadação</h3>
+                <table>
+                    <thead><tr><th>Turma</th><th>Descrição</th><th>Verde</th><th>Amarelo</th><th>Vermelho</th><th>Azul</th><th>Ações</th></tr></thead>
+                    <tbody id="tabela-arrecadacao-corpo"></tbody>
+                </table>
+            </div>
+
+            <!-- 10. BOLETIM INFORMATIVO -->
+            <div id="aba-boletim" class="tab-content">
+                <div class="section-title">🖨️ Boletim Informativo de Desempenho</div>
+                <div class="form-group">
+                    <label>Selecione a Turma para Gerar o Boletim:</label>
+                    <select id="select-boletim-turma" onchange="gerarBoletim()"><option value="">Selecione...</option></select>
+                </div>
+                <div id="painel-boletim-impressao" style="border: 1px solid #ccc; padding:20px; border-radius:10px; background:#fff; margin-top:15px; display:none;">
+                    <h2 id="boletim-titulo-turma" style="color:var(--cor-verde-tema); text-align:center;"></h2>
+                    <p style="text-align:center; color:#666; margin-bottom:20px;">Relatório Oficial de Pontuação e Equipes</p>
+                    <div id="boletim-conteudo-tabela"></div>
+                </div>
+            </div>
+
+            <!-- 11. EDITAR CABEÇALHO -->
             <div id="aba-config" class="tab-content">
-                <div class="section-title">✏️ Personalização e Configurações</div>
+                <div class="section-title">✏️ Configurações Gerais</div>
                 <div class="form-group">
                     <label>Título do Evento:</label>
                     <input type="text" id="input-edit-titulo-cabecalho">
                 </div>
                 <div class="form-group">
-                    <label>Subtítulo / Colégio:</label>
+                    <label>Subtítulo / Nome da Escola:</label>
                     <input type="text" id="input-edit-subtitulo-cabecalho">
                 </div>
-                <button class="btn-add" onclick="salvarTextosCabecalho()">Salvar Alterações</button>
+                <button class="btn-add" onclick="salvarTextosCabecalho()">💾 Salvar Títulos</button>
             </div>
 
         </div>
     </div>
 
-    <!-- CÓDIGO JAVASCRIPT -->
+    <!-- SCRIPT DE LÓGICA DO SISTEMA -->
     <script>
         const CORES = ['Verde', 'Amarelo', 'Vermelho', 'Azul'];
         let dados = {
@@ -288,7 +404,7 @@
             turmas: [
                 { id: 1, nome: "2º Ano 02", alunos: { Verde: ["João Silva"], Amarelo: ["Maria Oliveira"], Vermelho: [], Azul: [] } }
             ],
-            provas: [],
+            provas: [{ id: 101, nome: "Corrida de Saco" }],
             rodadas: [],
             arrecadacao: []
         };
@@ -307,12 +423,17 @@
             const alvo = document.getElementById(abaId);
             if(alvo) alvo.classList.add('active');
             if(event && event.currentTarget) event.currentTarget.classList.add('active');
+
+            if(abaId === 'aba-classificacao-geral') renderizarClassificacaoGeral();
+            if(abaId === 'aba-classificacao-turma') renderizarClassificacaoPorTurma();
         }
 
         function restaurarInterface() {
             document.getElementById('titulo-exibicao').innerText = dados.config.titulo || "Bjotinhas em Movimento";
             document.getElementById('subtitulo-exibicao').innerText = dados.config.subtitulo || "Colégio Bom Jesus";
-            
+            document.getElementById('input-edit-titulo-cabecalho').value = dados.config.titulo;
+            document.getElementById('input-edit-subtitulo-cabecalho').value = dados.config.subtitulo;
+
             const logo = document.getElementById('logo-exibicao');
             const placeholder = document.getElementById('logo-placeholder');
             if (dados.config.logoEvento) {
@@ -326,8 +447,12 @@
 
             atualizarSelects();
             renderizarTurmas();
+            renderizarProvas();
+            renderizarRodadas();
+            renderizarArrecadacoes();
             renderizarAlunosPorCorGeral();
             carregarAlunosDaTurma();
+            renderizarClassificacaoGeral();
         }
 
         function carregarImagemLogo(evt) {
@@ -344,15 +469,25 @@
         }
 
         function atualizarSelects() {
-            const selTurma = document.getElementById('select-visualizar-turma');
-            if (selTurma) {
-                const valAtual = selTurma.value;
-                selTurma.innerHTML = '<option value="">Selecione a Turma...</option>';
-                dados.turmas.forEach(t => { selTurma.innerHTML += `<option value="${t.id}">${t.nome}</option>`; });
-                selTurma.value = valAtual || (dados.turmas[0] ? dados.turmas[0].id : "");
+            const idsSelectsTurmas = ['select-visualizar-turma', 'select-turma-lote', 'select-rodada-turma', 'select-arrecadacao-turma', 'select-filtro-turma-placar', 'select-boletim-turma'];
+            idsSelectsTurmas.forEach(id => {
+                const sel = document.getElementById(id);
+                if (sel) {
+                    const valAnterior = sel.value;
+                    sel.innerHTML = '<option value="">Selecione a Turma...</option>';
+                    dados.turmas.forEach(t => { sel.innerHTML += `<option value="${t.id}">${t.nome}</option>`; });
+                    sel.value = valAnterior;
+                }
+            });
+
+            const selProva = document.getElementById('select-rodada-prova');
+            if (selProva) {
+                selProva.innerHTML = '<option value="">Selecione a Prova...</option>';
+                dados.provas.forEach(p => { selProva.innerHTML += `<option value="${p.id}">${p.nome}</option>`; });
             }
         }
 
+        /* TURMAS */
         function cadastrarTurma() {
             const nome = document.getElementById('input-nome-turma').value.trim();
             if (!nome) return alert('Informe o nome da turma!');
@@ -367,7 +502,7 @@
             if (!tbody) return;
             tbody.innerHTML = '';
             dados.turmas.forEach(t => {
-                tbody.innerHTML += `<tr><td><strong>${t.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirTurma(${t.id})">Excluir</button></td></tr>`;
+                tbody.innerHTML += `<tr><td><strong>${t.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirTurma(${t.id})">🗑️ Excluir</button></td></tr>`;
             });
         }
 
@@ -377,6 +512,7 @@
             restaurarInterface();
         }
 
+        /* ALUNOS POR TURMA */
         function carregarAlunosDaTurma() {
             const id = document.getElementById('select-visualizar-turma').value;
             const painel = document.getElementById('painel-detalhes-turma');
@@ -416,6 +552,7 @@
                 salvarDados();
                 document.getElementById('input-nome-aluno-manual').value = '';
                 carregarAlunosDaTurma();
+                renderizarAlunosPorCorGeral();
             }
         }
 
@@ -426,6 +563,7 @@
                 turma.alunos[cor].splice(index, 1);
                 salvarDados();
                 carregarAlunosDaTurma();
+                renderizarAlunosPorCorGeral();
             }
         }
 
@@ -436,7 +574,7 @@
 
             let todos = [];
             CORES.forEach(c => { todos = todos.concat(turma.alunos[c] || []); });
-            if (todos.length === 0) return alert('Não há alunos cadastrados para sortear!');
+            if (todos.length === 0) return alert('Não há alunos nesta turma!');
 
             todos.sort(() => Math.random() - 0.5);
             turma.alunos = { Verde: [], Amarelo: [], Vermelho: [], Azul: [] };
@@ -444,8 +582,35 @@
 
             salvarDados();
             carregarAlunosDaTurma();
+            renderizarAlunosPorCorGeral();
         }
 
+        /* LOTE E SORTEIO */
+        function processarLoteESortear() {
+            const turmaId = document.getElementById('select-turma-lote').value;
+            const texto = document.getElementById('textarea-alunos-lote').value.trim();
+
+            if(!turmaId) return alert('Selecione a turma!');
+            if(!texto) return alert('Cole os nomes dos alunos!');
+
+            const lista = texto.split('\n').map(n => n.trim()).filter(n => n.length > 0);
+            lista.sort(() => Math.random() - 0.5);
+
+            const turma = dados.turmas.find(t => t.id == turmaId);
+            turma.alunos = { Verde: [], Amarelo: [], Vermelho: [], Azul: [] };
+
+            lista.forEach((nome, index) => {
+                const cor = CORES[index % CORES.length];
+                turma.alunos[cor].push(nome);
+            });
+
+            salvarDados();
+            document.getElementById('textarea-alunos-lote').value = '';
+            alert(`${lista.length} alunos sorteados e cadastrados com sucesso!`);
+            restaurarInterface();
+        }
+
+        /* VISÃO GERAL CORES */
         function renderizarAlunosPorCorGeral() {
             const grid = document.getElementById('grid-geral-cores');
             if (!grid) return;
@@ -461,15 +626,199 @@
             });
         }
 
+        /* PROVAS */
+        function cadastrarProva() {
+            const nome = document.getElementById('input-nome-prova').value.trim();
+            if(!nome) return alert('Informe o nome da prova!');
+            dados.provas.push({ id: Date.now(), nome: nome });
+            salvarDados();
+            document.getElementById('input-nome-prova').value = '';
+            restaurarInterface();
+        }
+
+        function renderizarProvas() {
+            const tbody = document.getElementById('tabela-provas-corpo');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            dados.provas.forEach(p => {
+                tbody.innerHTML += `<tr><td><strong>${p.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirProva(${p.id})">🗑️ Excluir</button></td></tr>`;
+            });
+        }
+
+        function excluirProva(id) {
+            dados.provas = dados.provas.filter(p => p.id != id);
+            salvarDados();
+            restaurarInterface();
+        }
+
+        /* RODADAS */
+        function salvarRodada() {
+            const turmaId = document.getElementById('select-rodada-turma').value;
+            const provaId = document.getElementById('select-rodada-prova').value;
+            if(!turmaId || !provaId) return alert('Selecione turma e prova!');
+
+            dados.rodadas.push({
+                id: Date.now(),
+                turmaId: turmaId,
+                provaId: provaId,
+                pontos: {
+                    Verde: Number(document.getElementById('pts-verde').value) || 0,
+                    Amarelo: Number(document.getElementById('pts-amarelo').value) || 0,
+                    Vermelho: Number(document.getElementById('pts-vermelho').value) || 0,
+                    Azul: Number(document.getElementById('pts-azul').value) || 0
+                }
+            });
+
+            salvarDados();
+            renderizarRodadas();
+            alert('Rodada gravada!');
+        }
+
+        function renderizarRodadas() {
+            const tbody = document.getElementById('tabela-rodadas-corpo');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            dados.rodadas.forEach(r => {
+                const t = dados.turmas.find(x => x.id == r.turmaId) || { nome: 'Removida' };
+                const p = dados.provas.find(x => x.id == r.provaId) || { nome: 'Removida' };
+                tbody.innerHTML += `<tr>
+                    <td>${t.nome}</td><td>${p.nome}</td>
+                    <td>${r.pontos.Verde}</td><td>${r.pontos.Amarelo}</td><td>${r.pontos.Vermelho}</td><td>${r.pontos.Azul}</td>
+                    <td><button style="color:red;" onclick="excluirRodada(${r.id})">🗑️</button></td>
+                </tr>`;
+            });
+        }
+
+        function excluirRodada(id) {
+            dados.rodadas = dados.rodadas.filter(r => r.id != id);
+            salvarDados();
+            renderizarRodadas();
+        }
+
+        /* ARRECADACÃO */
+        function salvarArrecadacao() {
+            const turmaId = document.getElementById('select-arrecadacao-turma').value;
+            const desc = document.getElementById('input-arrecadacao-desc').value.trim();
+            if(!turmaId || !desc) return alert('Informe a turma e a descrição!');
+
+            dados.arrecadacao.push({
+                id: Date.now(),
+                turmaId: turmaId,
+                descricao: desc,
+                pontos: {
+                    Verde: Number(document.getElementById('arr-verde').value) || 0,
+                    Amarelo: Number(document.getElementById('arr-amarelo').value) || 0,
+                    Vermelho: Number(document.getElementById('arr-vermelho').value) || 0,
+                    Azul: Number(document.getElementById('arr-azul').value) || 0
+                }
+            });
+
+            salvarDados();
+            renderizarArrecadacoes();
+            document.getElementById('input-arrecadacao-desc').value = '';
+            alert('Arrecadação registrada!');
+        }
+
+        function renderizarArrecadacoes() {
+            const tbody = document.getElementById('tabela-arrecadacao-corpo');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            dados.arrecadacao.forEach(a => {
+                const t = dados.turmas.find(x => x.id == a.turmaId) || { nome: 'Removida' };
+                tbody.innerHTML += `<tr>
+                    <td>${t.nome}</td><td>${a.descricao}</td>
+                    <td>${a.pontos.Verde}</td><td>${a.pontos.Amarelo}</td><td>${a.pontos.Vermelho}</td><td>${a.pontos.Azul}</td>
+                    <td><button style="color:red;" onclick="excluirArrecadacao(${a.id})">🗑️</button></td>
+                </tr>`;
+            });
+        }
+
+        function excluirArrecadacao(id) {
+            dados.arrecadacao = dados.arrecadacao.filter(a => a.id != id);
+            salvarDados();
+            renderizarArrecadacoes();
+        }
+
+        /* CLASSIFICAÇÃO GERAL E POR TURMA */
+        function renderizarClassificacaoGeral() {
+            const tbody = document.getElementById('tabela-classificacao-geral');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+
+            let totais = { Verde: 0, Amarelo: 0, Vermelho: 0, Azul: 0 };
+            dados.rodadas.forEach(r => CORES.forEach(c => totais[c] += (r.pontos[c] || 0)));
+            dados.arrecadacao.forEach(a => CORES.forEach(c => totais[c] += (a.pontos[c] || 0)));
+
+            let ranking = CORES.map(c => ({ cor: c, pontos: totais[c] })).sort((a,b) => b.pontos - a.pontos);
+
+            ranking.forEach((item, index) => {
+                tbody.innerHTML += `<tr>
+                    <td><strong>${index + 1}º Lugar</strong></td>
+                    <td><strong style="color:var(--cor-${item.cor.toLowerCase()}-equipe);">${item.cor}</strong></td>
+                    <td><strong>${item.pontos} pts</strong></td>
+                </tr>`;
+            });
+        }
+
+        function renderizarClassificacaoPorTurma() {
+            const turmaId = document.getElementById('select-filtro-turma-placar').value;
+            const tbody = document.getElementById('tabela-classificacao-turma-corpo');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+
+            if(!turmaId) return;
+
+            CORES.forEach(cor => {
+                let ptsProvas = dados.rodadas.filter(r => r.turmaId == turmaId).reduce((acc, r) => acc + (r.pontos[cor] || 0), 0);
+                let ptsArr = dados.arrecadacao.filter(a => a.turmaId == turmaId).reduce((acc, a) => acc + (a.pontos[cor] || 0), 0);
+                tbody.innerHTML += `<tr>
+                    <td><strong>Equipe ${cor}</strong></td>
+                    <td>${ptsProvas}</td>
+                    <td>${ptsArr}</td>
+                    <td><strong>${ptsProvas + ptsArr} pts</strong></td>
+                </tr>`;
+            });
+        }
+
+        /* BOLETIM */
+        function gerarBoletim() {
+            const id = document.getElementById('select-boletim-turma').value;
+            const painel = document.getElementById('painel-boletim-impressao');
+            if(!id) return painel.style.display = 'none';
+
+            const turma = dados.turmas.find(t => t.id == id);
+            document.getElementById('boletim-titulo-turma').innerText = `Boletim da Turma: ${turma.nome}`;
+
+            let html = `<table><thead><tr><th>Equipe</th><th>Alunos Cadastrados</th><th>Pontos Provas</th><th>Pontos Arrecadação</th><th>Total</th></tr></thead><tbody>`;
+
+            CORES.forEach(c => {
+                let qtdAlunos = (turma.alunos && turma.alunos[c]) ? turma.alunos[c].length : 0;
+                let ptsProvas = dados.rodadas.filter(r => r.turmaId == id).reduce((acc, r) => acc + (r.pontos[c] || 0), 0);
+                let ptsArr = dados.arrecadacao.filter(a => a.turmaId == id).reduce((acc, a) => acc + (a.pontos[c] || 0), 0);
+                html += `<tr>
+                    <td><strong>${c}</strong></td>
+                    <td>${qtdAlunos} alunos</td>
+                    <td>${ptsProvas}</td>
+                    <td>${ptsArr}</td>
+                    <td><strong>${ptsProvas + ptsArr} pts</strong></td>
+                </tr>`;
+            });
+
+            html += `</tbody></table>`;
+            document.getElementById('boletim-conteudo-tabela').innerHTML = html;
+            painel.style.display = 'block';
+        }
+
+        /* CONFIGS */
         function salvarTextosCabecalho() {
             dados.config.titulo = document.getElementById('input-edit-titulo-cabecalho').value;
             dados.config.subtitulo = document.getElementById('input-edit-subtitulo-cabecalho').value;
-            salvarDados(); restaurarInterface(); alert('Salvo com sucesso!');
+            salvarDados(); restaurarInterface(); alert('Título e Subtítulo atualizados!');
         }
 
-        function criarCampeonatoDoZero() { if (confirm("Deseja zerar tudo?")) { localStorage.removeItem('bjotinhas_dados'); location.reload(); } }
-        function reutilizarEstruturaProximoAno() { if (confirm("Limpar alunos e pontuações?")) { dados.rodadas = []; dados.arrecadacao = []; dados.turmas.forEach(t => t.alunos = {Verde:[],Amarelo:[],Vermelho:[],Azul:[]}); salvarDados(); restaurarInterface(); } }
-        function zerarSelecionados() { alert("Utilize o menu de configurações."); }
+        function criarCampeonatoDoZero() { if (confirm("Limpar campeonato? Os dados atuais serão perdidos.")) { localStorage.removeItem('bjotinhas_dados'); location.reload(); } }
+        function reutilizarEstruturaProximoAno() { if (confirm("Manter turmas e limpar os alunos e pontos?")) { dados.rodadas = []; dados.arrecadacao = []; dados.turmas.forEach(t => t.alunos = {Verde:[],Amarelo:[],Vermelho:[],Azul:[]}); salvarDados(); restaurarInterface(); alert('Estrutura reiniciada!'); } }
+        function limparTudoComConfirmacao() { if(confirm("Deseja apagar TODOS os dados registrados?")) { localStorage.clear(); location.reload(); } }
 
         window.onload = carregarDados;
     </script>
