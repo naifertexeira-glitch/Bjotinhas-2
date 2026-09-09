@@ -1,4 +1,376 @@
-restaurarInterface();
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Campeonato</title>
+    <style>
+        :root {
+            --cor-verde: #2ecc71;
+            --cor-amarelo: #f1c40f;
+            --cor-vermelho: #e74c3c;
+            --cor-azul: #3498db;
+            --cor-fundo: #f4f6f9;
+            --cor-texto: #2c3e50;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--cor-fundo); color: var(--cor-texto); padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        header img { max-height: 80px; margin-bottom: 10px; }
+        header h1 { font-size: 24px; color: #333; }
+        header h2 { font-size: 16px; color: #666; font-weight: normal; }
+
+        .tabs { display: flex; flex-wrap: wrap; gap: 5px; border-bottom: 2px solid #ccc; margin-bottom: 20px; }
+        .tab-btn { padding: 10px 15px; border: none; background: #e0e0e0; cursor: pointer; border-radius: 5px 5px 0 0; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { background: #3498db; color: white; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+        .btn { padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; color: white; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-primary { background-color: #3498db; }
+        .btn-success { background-color: #2ecc71; }
+        .btn-warning { background-color: #f39c12; }
+        .btn-danger { background-color: #e74c3c; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f8f9fa; }
+
+        .grid-equipes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card-equipe { padding: 15px; border-radius: 6px; color: white; }
+        .card-equipe ul { list-style: none; margin-top: 10px; }
+        .card-equipe li { background: rgba(255,255,255,0.2); padding: 5px; margin-bottom: 4px; border-radius: 3px; font-size: 14px; }
+        
+        .verde { background-color: var(--cor-verde); }
+        .amarelo { background-color: var(--cor-amarelo); color: #333; }
+        .vermelho { background-color: var(--cor-vermelho); }
+        .azul { background-color: var(--cor-azul); }
+
+        .acoes-celula { display: flex; gap: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header id="cabecalho-principal">
+            <img id="logo-exibicao" style="display:none;" />
+            <h1 id="titulo-exibicao">Campeonato Escolar</h1>
+            <h2 id="subtitulo-exibicao">Gestão Integrada de Equipes</h2>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="abrirAba('aba-turmas')">Turmas & Sorteio</button>
+            <button class="tab-btn" onclick="abrirAba('aba-alunos-turma')">Alunos por Turma</button>
+            <button class="tab-btn" onclick="abrirAba('aba-geral-cores')">Equipes Gerais</button>
+            <button class="tab-btn" onclick="abrirAba('aba-provas')">Provas</button>
+            <button class="tab-btn" onclick="abrirAba('aba-rodadas')">Rodadas & Pontos</button>
+            <button class="tab-btn" onclick="abrirAba('aba-arrecadacao')">Arrecadação</button>
+            <button class="tab-btn" onclick="abrirAba('aba-classificacao')">Classificação</button>
+            <button class="tab-btn" onclick="abrirAba('aba-boletim')">Boletim</button>
+            <button class="tab-btn" onclick="abrirAba('aba-config')">Configurações</button>
+        </nav>
+
+        <!-- ABA TURMAS -->
+        <div id="aba-turmas" class="tab-content active">
+            <h3>Cadastrar Turma</h3>
+            <div class="form-group">
+                <label>Nome da Turma:</label>
+                <input type="text" id="input-nome-turma" placeholder="Ex: 7º Ano A">
+            </div>
+            <div class="form-group">
+                <label>Lista de Alunos (um por linha):</label>
+                <textarea id="textarea-alunos-turma" rows="5" style="width:100%; padding:8px;"></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="cadastrarTurmaESortear()">Cadastrar e Sortear Equipes</button>
+
+            <h3 style="margin-top: 20px;">Turmas Cadastradas</h3>
+            <table>
+                <thead>
+                    <tr><th>Turma</th><th>Ações</th></tr>
+                </thead>
+                <tbody id="tabela-turmas-corpo"></tbody>
+            </table>
+        </div>
+
+        <!-- ABA ALUNOS POR TURMA -->
+        <div id="aba-alunos-turma" class="tab-content">
+            <h3>Visualizar e Ajustar Turma</h3>
+            <div class="form-group">
+                <select id="select-visualizar-turma" onchange="carregarAlunosDaTurma()">
+                    <option value="">Selecione uma turma...</option>
+                </select>
+            </div>
+            <div id="painel-detalhes-turma" style="display:none;">
+                <h4 id="titulo-turma-selecionada"></h4>
+                <button class="btn btn-warning" onclick="refazerSorteioDaTurmaAtual()" style="margin: 10px 0;">🔄 Refazer Sorteio Desta Turma</button>
+                <div id="grid-alunos-turma-selecionada"></div>
+            </div>
+        </div>
+
+        <!-- ABA EQUIPES GERAIS -->
+        <div id="aba-geral-cores" class="tab-content">
+            <h3>Visão Geral por Cores</h3>
+            <div id="grid-geral-cores" class="grid-equipes"></div>
+        </div>
+
+        <!-- ABA PROVAS -->
+        <div id="aba-provas" class="tab-content">
+            <h3>Gerenciar Provas</h3>
+            <input type="hidden" id="input-id-prova-edicao">
+            <div class="form-group">
+                <label>Nome da Prova:</label>
+                <input type="text" id="input-nome-prova" placeholder="Ex: Corrida de Revezamento">
+            </div>
+            <button class="btn btn-primary" id="btn-salvar-prova" onclick="cadastrarOuAtualizarProva()">Cadastrar Prova</button>
+            <button class="btn btn-danger" id="btn-cancelar-prova" onclick="cancelarEdicaoProva()" style="display:none;">Cancelar</button>
+
+            <table>
+                <thead><tr><th>Prova</th><th>Ações</th></tr></thead>
+                <tbody id="tabela-provas-corpo"></tbody>
+            </table>
+        </div>
+
+        <!-- ABA RODADAS -->
+        <div id="aba-rodadas" class="tab-content">
+            <h3>Lançar Resultados de Rodadas</h3>
+            <input type="hidden" id="input-id-rodada-edicao">
+            <div class="form-group">
+                <label>Turma:</label>
+                <select id="select-turma-rodada"></select>
+            </div>
+            <div class="form-group">
+                <label>Prova:</label>
+                <select id="select-prova-rodada"></select>
+            </div>
+            <div class="form-group">
+                <label>Classificação (1º ao 4º Lugar):</label>
+                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <div>1º: <select id="res-1"></select></div>
+                    <div>2º: <select id="res-2"></select></div>
+                    <div>3º: <select id="res-3"></select></div>
+                    <div>4º: <select id="res-4"></select></div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-salvar-rodada" onclick="salvarRodada()">Salvar Resultado</button>
+            <button class="btn btn-danger" id="btn-cancelar-rodada" onclick="cancelarEdicaoRodada()" style="display:none;">Cancelar</button>
+
+            <h3>Histórico de Rodadas</h3>
+            <table>
+                <thead><tr><th>Turma</th><th>Prova</th><th>Resultados</th><th>Ações</th></tr></thead>
+                <tbody id="tabela-historico-rodadas"></tbody>
+            </table>
+        </div>
+
+        <!-- ABA ARRECADAÇÃO -->
+        <div id="aba-arrecadacao" class="tab-content">
+            <h3>Registro de Arrecadação</h3>
+            <div class="form-group">
+                <label>Turma:</label>
+                <select id="select-turma-arrecadacao"></select>
+            </div>
+            <div class="form-group">
+                <label>Equipe:</label>
+                <select id="select-equipe-arrecadacao">
+                    <option value="Verde">Verde</option>
+                    <option value="Amarelo">Amarelo</option>
+                    <option value="Vermelho">Vermelho</option>
+                    <option value="Azul">Azul</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Item Arrecadado:</label>
+                <input type="text" id="input-item-arrecadacao" placeholder="Ex: Kg de Alimento">
+            </div>
+            <div class="form-group">
+                <label>Quantidade/Pontos:</label>
+                <input type="number" id="input-qtd-arrecadacao" placeholder="Ex: 50">
+            </div>
+            <button class="btn btn-primary" onclick="adicionarArrecadacao()">Registrar Arrecadação</button>
+
+            <table>
+                <thead><tr><th>Turma</th><th>Equipe</th><th>Item</th><th>Qtd/Pontos</th><th>Ações</th></tr></thead>
+                <tbody id="tabela-arrecadacao"></tbody>
+            </table>
+        </div>
+
+        <!-- ABA CLASSIFICAÇÃO -->
+        <div id="aba-classificacao" class="tab-content">
+            <h3>Classificação Geral do Campeonato</h3>
+            <table>
+                <thead><tr><th>Posição</th><th>Equipe</th><th>Pontuação Total</th></tr></thead>
+                <tbody id="tabela-classificacao-geral"></tbody>
+            </table>
+
+            <h3 style="margin-top: 30px;">Classificação por Turma</h3>
+            <div class="form-group">
+                <select id="select-filtro-turma-classificacao" onchange="atualizarClassificacaoPorTurma()">
+                    <option value="">Selecione uma turma...</option>
+                </select>
+            </div>
+            <table>
+                <thead><tr><th>Posição</th><th>Equipe</th><th>Pontos na Turma</th></tr></thead>
+                <tbody id="tabela-classificacao-turma"></tbody>
+            </table>
+        </div>
+
+        <!-- ABA BOLETIM -->
+        <div id="aba-boletim" class="tab-content">
+            <h3>Opções de Impressão de Boletim</h3>
+            <div class="form-group">
+                <label><input type="checkbox" id="chk-imprimir-logo" checked> Incluir Logotipo</label>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="chk-imprimir-classificacao-geral" checked> Incluir Classificação Geral</label>
+            </div>
+            <button class="btn btn-primary" onclick="gerarBoletimPersonalizado()">Gerar Boletim</button>
+            <button class="btn btn-success" onclick="window.print()">🖨️ Imprimir</button>
+
+            <div id="boletim-conteudo-dinamico" style="margin-top: 20px; border: 1px solid #ccc; padding: 20px;"></div>
+        </div>
+
+        <!-- ABA CONFIGURAÇÕES -->
+        <div id="aba-config" class="tab-content">
+            <h3>Personalização do Cabeçalho</h3>
+            <div class="form-group">
+                <label>Título do Evento:</label>
+                <input type="text" id="input-edit-titulo-cabecalho">
+            </div>
+            <div class="form-group">
+                <label>Subtítulo:</label>
+                <input type="text" id="input-edit-subtitulo-cabecalho">
+            </div>
+            <div class="form-group">
+                <label>Tag/Ano:</label>
+                <input type="text" id="input-edit-tag-cabecalho">
+            </div>
+            <button class="btn btn-primary" onclick="salvarTextosCabecalho()">Salvar Textos</button>
+
+            <h3 style="margin-top: 20px;">Logo do Evento</h3>
+            <input type="file" accept="image/*" onchange="carregarImagemLocal(event, 'logo-exibicao')">
+
+            <h3 style="margin-top: 30px;">Gerenciamento de Dados</h3>
+            <button class="btn btn-warning" onclick="reutilizarEstruturaProximoAno()">Manter Turmas/Provas e Zerar Pontos</button>
+            
+            <div style="margin-top: 15px; border: 1px solid #e74c3c; padding: 15px; border-radius: 5px;">
+                <h4 style="color: #e74c3c;">Limpeza Seletiva</h4>
+                <label><input type="checkbox" id="chk-zerar-alunos"> Zerar Alunos</label><br>
+                <label><input type="checkbox" id="chk-zerar-rodadas"> Zerar Rodadas</label><br>
+                <label><input type="checkbox" id="chk-zerar-arrecadacao"> Zerar Arrecadações</label><br>
+                <label><input type="checkbox" id="chk-zerar-turmas"> Excluir Turmas</label><br>
+                <label><input type="checkbox" id="chk-zerar-provas"> Excluir Provas</label><br><br>
+                <button class="btn btn-danger" onclick="zerarSelecionados()">Zerar Selecionados</button>
+            </div>
+
+            <button class="btn btn-danger" onclick="criarCampeonatoDoZero()" style="margin-top: 20px;">⚠️ Reset Total (Apagar Tudo)</button>
+        </div>
+    </div>
+
+    <script>
+        const CORES = ['Verde', 'Amarelo', 'Vermelho', 'Azul'];
+        const PONTOS_POSICAO = { 1: 10, 2: 7, 3: 4, 4: 2 };
+
+        let dados = {
+            config: { titulo: "Campeonato Escolar", subtitulo: "Gestão Integrada de Equipes", tag: "2026", logoEvento: "" },
+            turmas: [],
+            provas: [],
+            rodadas: [],
+            arrecadacao: []
+        };
+
+        function salvarDados() {
+            localStorage.setItem('bjotinhas_dados', JSON.stringify(dados));
+        }
+
+        function carregarDados() {
+            const salvo = localStorage.getItem('bjotinhas_dados');
+            if (salvo) {
+                dados = JSON.parse(salvo);
+            }
+            restaurarInterface();
+        }
+
+        function abrirAba(abaId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(abaId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function restaurarInterface() {
+            document.getElementById('titulo-exibicao').innerText = dados.config.titulo || "Campeonato Escolar";
+            document.getElementById('subtitulo-exibicao').innerText = dados.config.subtitulo || "Gestão Integrada";
+            
+            const logo = document.getElementById('logo-exibicao');
+            if (dados.config.logoEvento) {
+                logo.src = dados.config.logoEvento;
+                logo.style.display = 'block';
+            } else {
+                logo.style.display = 'none';
+            }
+
+            document.getElementById('input-edit-titulo-cabecalho').value = dados.config.titulo || "";
+            document.getElementById('input-edit-subtitulo-cabecalho').value = dados.config.subtitulo || "";
+            document.getElementById('input-edit-tag-cabecalho').value = dados.config.tag || "";
+
+            renderizarTurmas();
+            renderizarProvas();
+            renderizarRodadas();
+            renderizarArrecadacao();
+            renderizarAlunosPorCorGeral();
+            atualizarClassificacaoGeral();
+            atualizarSelects();
+        }
+
+        // --- TURMAS & SORTEIO ---
+        function cadastrarTurmaESortear() {
+            const nome = document.getElementById('input-nome-turma').value.trim();
+            const textoAlunos = document.getElementById('textarea-alunos-turma').value;
+            if (!nome) return alert('Digite o nome da turma!');
+
+            let listaAlunos = textoAlunos.split('\n').map(a => a.trim()).filter(a => a.length > 0);
+            listaAlunos.sort(() => Math.random() - 0.5);
+
+            let alunosPorCor = { Verde: [], Amarelo: [], Vermelho: [], Azul: [] };
+            listaAlunos.forEach((aluno, index) => {
+                alunosPorCor[CORES[index % CORES.length]].push(aluno);
+            });
+
+            dados.turmas.push({ id: Date.now(), nome: nome, alunos: alunosPorCor });
+            salvarDados();
+            document.getElementById('input-nome-turma').value = '';
+            document.getElementById('textarea-alunos-turma').value = '';
+            restaurarInterface();
+        }
+
+        function renderizarTurmas() {
+            const tbody = document.getElementById('tabela-turmas-corpo');
+            tbody.innerHTML = '';
+            dados.turmas.forEach(t => {
+                tbody.innerHTML += `<tr>
+                    <td><strong>${t.nome}</strong></td>
+                    <td class="acoes-celula">
+                        <button class="btn btn-danger" onclick="excluirTurma(${t.id})">🗑️ Excluir</button>
+                    </td>
+                </tr>`;
+            });
+        }
+
+        function excluirTurma(id) {
+            if (confirm("Excluir esta turma?")) {
+                dados.turmas = dados.turmas.filter(t => t.id != id);
+                dados.rodadas = dados.rodadas.filter(r => r.turmaId != id);
+                dados.arrecadacao = dados.arrecadacao.filter(a => a.turmaId != id);
+                salvarDados();
+                restaurarInterface();
+            }
         }
 
         // --- ALUNOS POR TURMA (SORTEIO E MANIPULAÇÃO MANUAL) ---
@@ -14,7 +386,6 @@ restaurarInterface();
             document.getElementById('titulo-turma-selecionada').innerText = `Turma: ${turma.nome}`;
             grid.innerHTML = '';
 
-            // Renderiza o formulário manual acima dos cards da turma
             let htmlFormManual = `
                 <div id="form-aluno-manual" style="margin-bottom: 20px; padding: 12px; border: 1px solid #ccc; background: #f9f9f9; border-radius: 6px;">
                     <h4 style="margin-top:0; margin-bottom: 10px;">➕ Adicionar Aluno Manualmente</h4>
@@ -328,23 +699,29 @@ restaurarInterface();
             const ids = ['select-turma-sorteio', 'select-visualizar-turma', 'select-turma-rodada', 'select-turma-arrecadacao', 'select-filtro-turma-classificacao'];
             ids.forEach(id => {
                 const el = document.getElementById(id);
-                const valAntigo = el.value;
-                el.innerHTML = '<option value="">Selecione...</option>';
-                dados.turmas.forEach(t => { el.innerHTML += `<option value="${t.id}">${t.nome}</option>`; });
-                el.value = valAntigo;
+                if (el) {
+                    const valAntigo = el.value;
+                    el.innerHTML = '<option value="">Selecione...</option>';
+                    dados.turmas.forEach(t => { el.innerHTML += `<option value="${t.id}">${t.nome}</option>`; });
+                    el.value = valAntigo;
+                }
             });
 
             const provaSelect = document.getElementById('select-prova-rodada');
-            const vProva = provaSelect.value;
-            provaSelect.innerHTML = '<option value="">Selecione...</option>';
-            dados.provas.forEach(p => { provaSelect.innerHTML += `<option value="${p.id}">${p.nome}</option>`; });
-            provaSelect.value = vProva;
+            if (provaSelect) {
+                const vProva = provaSelect.value;
+                provaSelect.innerHTML = '<option value="">Selecione...</option>';
+                dados.provas.forEach(p => { provaSelect.innerHTML += `<option value="${p.id}">${p.nome}</option>`; });
+                provaSelect.value = vProva;
+            }
 
             ['res-1', 'res-2', 'res-3', 'res-4'].forEach((id, idx) => {
                 const el = document.getElementById(id);
-                el.innerHTML = '';
-                CORES.forEach(c => { el.innerHTML += `<option value="${c}">${c}</option>`; });
-                el.selectedIndex = idx;
+                if (el) {
+                    el.innerHTML = '';
+                    CORES.forEach(c => { el.innerHTML += `<option value="${c}">${c}</option>`; });
+                    el.selectedIndex = idx;
+                }
             });
         }
 
@@ -353,11 +730,6 @@ restaurarInterface();
             dados.config.subtitulo = document.getElementById('input-edit-subtitulo-cabecalho').value;
             dados.config.tag = document.getElementById('input-edit-tag-cabecalho').value;
             salvarDados(); restaurarInterface(); alert('Cabeçalho atualizado!');
-        }
-
-        function salvarTituloEvento() {
-            const t = document.getElementById('input-edit-titulo').value.trim();
-            if (t) { dados.config.titulo = t; salvarDados(); restaurarInterface(); alert('Título do evento salvo!'); }
         }
 
         function carregarImagemLocal(evt, idElementoTarget) {
