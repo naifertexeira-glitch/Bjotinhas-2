@@ -6,72 +6,84 @@
     <title>Bjotinhas em Movimento - Sistema Completo</title>
     <style>
         :root {
-            --cor-verde-tema: #1e5622;
-            --cor-verde-hover: #164019;
-            --cor-fundo-site: #eaeded;
+            --cor-verde-primaria: #1b4d24;
+            --cor-verde-media: #277e33;
+            --cor-verde-suave: #e8f5e9;
+            --cor-fundo-site: #f4f6f8;
             --cor-card-fundo: #ffffff;
-            --cor-verde-equipe: #277e33;
-            --cor-amarelo-equipe: #e67e22;
-            --cor-vermelho-equipe: #e74c3c;
-            --cor-azul-equipe: #2980b9;
+            --cor-texto-forte: #1e293b;
+            --cor-texto-suave: #64748b;
+            --cor-borda: #e2e8f0;
+            
+            /* Cores das Equipes */
+            --cor-verde-equipe: #10b981;
+            --cor-amarelo-equipe: #f59e0b;
+            --cor-vermelho-equipe: #ef4444;
+            --cor-azul-equipe: #3b82f6;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background-color: var(--cor-fundo-site); color: #333; font-size: 14px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--cor-fundo-site); color: var(--cor-texto-forte); font-size: 14px; -webkit-font-smoothing: antialiased; }
 
         /* BARRA SUPERIOR */
         .top-bar {
-            background-color: #f1f3f4;
-            padding: 10px 20px;
+            background-color: #ffffff;
+            padding: 10px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #dcdcdc;
+            border-bottom: 1px solid var(--cor-borda);
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
-        .top-bar-left { display: flex; align-items: center; gap: 10px; font-weight: bold; color: #2c3e50; }
-        .top-bar-left select { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-weight: bold; font-size: 14px; background: #fff; }
+        .top-bar-left { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--cor-texto-forte); font-size: 13px; }
+        .top-bar-left select { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--cor-borda); font-weight: 600; font-size: 13px; background: #f8fafc; color: var(--cor-texto-forte); outline: none; cursor: pointer; }
         .top-bar-right { display: flex; gap: 8px; flex-wrap: wrap; }
 
-        .btn-top { border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; color: #fff; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; }
-        .btn-top-green { background-color: #277e33; }
-        .btn-top-orange { background-color: #f39c12; }
-        .btn-top-red { background-color: #e74c3c; }
+        .btn-top { border: none; padding: 8px 14px; border-radius: 8px; font-weight: 600; color: #fff; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease; }
+        .btn-top:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-top-green { background-color: var(--cor-verde-media); }
+        .btn-top-orange { background-color: #d97706; }
+        .btn-top-red { background-color: #dc2626; }
 
-        /* CABEÇALHO */
+        /* CABEÇALHO COM GRADIENTE */
         header.header-verde {
-            background-color: var(--cor-verde-tema);
+            background: linear-gradient(135deg, #133a1a 0%, #1b4d24 50%, #277e33 100%);
             color: white;
-            padding: 20px 40px;
+            padding: 24px 35px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .logo-box {
-            background: white;
-            padding: 10px 20px;
+            background: #ffffff;
+            padding: 8px 16px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 140px;
-            height: 70px;
-            border: 2px dashed #b2bec3;
+            min-width: 130px;
+            height: 68px;
+            border: 2px dashed #cbd5e1;
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: all 0.2s ease;
         }
-        .logo-box img { max-height: 60px; max-width: 100%; object-fit: contain; }
-        .header-info h1 { font-size: 28px; font-weight: bold; margin-bottom: 2px; }
-        .header-info h2 { font-size: 15px; font-weight: normal; opacity: 0.9; }
+        .logo-box:hover { border-color: var(--cor-verde-media); transform: scale(1.02); }
+        .logo-box img { max-height: 52px; max-width: 100%; object-fit: contain; }
+        .header-info h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 2px; }
+        .header-info h2 { font-size: 14px; font-weight: 400; color: #a7f3d0; opacity: 0.95; }
 
-        /* ABAS EM DUAS LINHAS */
+        /* NAVEGAÇÃO / ABAS */
         .nav-tabs-container {
             background-color: #ffffff;
-            padding: 12px 20px;
+            padding: 14px 28px;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 8px;
-            border-bottom: 1px solid #e0e0e0;
+            gap: 10px;
+            border-bottom: 1px solid var(--cor-borda);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
         @media (max-width: 900px) {
@@ -79,67 +91,187 @@
         }
 
         .tab-btn {
-            background: #f8f9fa;
+            background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 10px 12px;
-            border-radius: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
             font-weight: 600;
-            color: #4a5568;
+            color: var(--cor-texto-suave);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 13px;
             text-align: center;
             transition: all 0.2s ease;
         }
-        .tab-btn:hover { background-color: #edf2f7; }
+        .tab-btn:hover { background-color: var(--cor-verde-suave); color: var(--cor-verde-primaria); border-color: #a7f3d0; }
         .tab-btn.active {
-            background-color: var(--cor-verde-tema);
+            background-color: var(--cor-verde-primaria);
             color: #ffffff;
-            border-color: var(--cor-verde-tema);
+            border-color: var(--cor-verde-primaria);
+            box-shadow: 0 4px 10px rgba(27, 77, 36, 0.25);
         }
 
-        /* CARD PRINCIPAL */
-        .main-container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
-        .card-panel { background: var(--cor-card-fundo); border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        .section-title { font-size: 18px; color: var(--cor-verde-tema); font-weight: bold; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+        /* CARD PRINCIPAL MODERNO */
+        .main-container { max-width: 1120px; margin: 30px auto; padding: 0 20px; }
+        .card-panel {
+            background: var(--cor-card-fundo);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            border: 1px solid #edf2f7;
+        }
+        .section-title {
+            font-size: 18px;
+            color: var(--cor-verde-primaria);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
 
-        /* FORMULÁRIOS & TABELAS */
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-weight: bold; margin-bottom: 6px; color: #333; font-size: 13px; }
-        select, input[type="text"], input[type="number"], textarea { width: 100%; padding: 10px 12px; border: 1px solid #dcdcdc; border-radius: 8px; outline: none; font-size: 14px; background-color: #fbfbfb; }
+        /* FORMULÁRIOS & CAMPOS */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--cor-texto-forte); font-size: 13px; }
+        select, input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background-color: #f8fafc;
+            color: var(--cor-texto-forte);
+            transition: all 0.2s ease;
+        }
+        select:focus, input:focus, textarea:focus {
+            border-color: var(--cor-verde-media);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(39, 126, 51, 0.12);
+        }
         textarea { resize: vertical; min-height: 120px; }
 
-        .row-inline { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+        .row-inline { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; }
         .col-flex { flex: 1; min-width: 200px; }
 
-        .btn-add { background-color: var(--cor-verde-tema); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-        .btn-refazer { background-color: #f39c12; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+        .btn-add {
+            background-color: var(--cor-verde-primaria);
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(27, 77, 36, 0.2);
+        }
+        .btn-add:hover { background-color: #143b1b; transform: translateY(-1px); }
 
-        .grid-equipes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
-        .card-cor { border-radius: 10px; padding: 15px; color: white; min-height: 150px; }
-        .card-cor.verde { background-color: var(--cor-verde-equipe); }
-        .card-cor.amarelo { background-color: var(--cor-amarelo-equipe); }
-        .card-cor.vermelho { background-color: var(--cor-vermelho-equipe); }
-        .card-cor.azul { background-color: var(--cor-azul-equipe); }
+        .btn-refazer {
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .btn-refazer:hover { background-color: #d97706; }
 
-        .card-cor h4 { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
+        /* CARDS DE EQUIPE */
+        .grid-equipes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+        .card-cor {
+            border-radius: 14px;
+            padding: 18px;
+            color: white;
+            min-height: 160px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease;
+        }
+        .card-cor:hover { transform: translateY(-3px); }
+        .card-cor.verde { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .card-cor.amarelo { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
+        .card-cor.vermelho { background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); }
+        .card-cor.azul { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); }
+
+        .card-cor h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 6px; }
         .card-cor ul { list-style: none; }
-        .card-cor li { background: rgba(255, 255, 255, 0.18); margin-bottom: 6px; padding: 6px 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
-        .btn-del-item { background: transparent; border: none; color: white; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .card-cor li {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            margin-bottom: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .btn-del-item { background: rgba(0,0,0,0.15); border: none; color: white; cursor: pointer; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .btn-del-item:hover { background: rgba(0,0,0,0.35); }
 
+        /* TABELAS MODERNAS */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #e0e0e0; padding: 10px; text-align: left; }
-        th { background-color: #f8f9fa; font-weight: bold; }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 18px; border-radius: 12px; overflow: hidden; border: 1px solid var(--cor-borda); }
+        th, td { padding: 12px 16px; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: 700; color: var(--cor-texto-forte); font-size: 13px; border-bottom: 1px solid var(--cor-borda); }
+        td { border-bottom: 1px solid #f1f5f9; background-color: #ffffff; color: #334155; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background-color: #f8fafc; }
 
+        /* COLUNAS EXCLUSIVAS DE IMPRESSÃO */
+        .grid-impressao-alunos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .coluna-impressao {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fff;
+        }
+        .coluna-impressao h4 {
+            padding: 6px;
+            text-align: center;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .coluna-impressao.verde h4 { background-color: #059669; }
+        .coluna-impressao.amarelo h4 { background-color: #d97706; }
+        .coluna-impressao.vermelho h4 { background-color: #dc2626; }
+        .coluna-impressao.azul h4 { background-color: #2563eb; }
+        
+        .coluna-impressao ol { padding-left: 20px; font-size: 12px; }
+        .coluna-impressao li { margin-bottom: 6px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 2px; }
+
+        /* REGRA DE IMPRESSÃO */
         @media print {
-            .top-bar, .nav-tabs-container, .btn-add, .btn-refazer, .btn-top, button { display: none !important; }
-            body { background: white; }
-            .card-panel { border: none; box-shadow: none; }
+            .top-bar, .nav-tabs-container, .btn-add, .btn-refazer, .btn-top, button, .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .main-container { max-width: 100%; margin: 0; padding: 0; }
+            .card-panel { border: none; box-shadow: none; padding: 0; }
+            .grid-impressao-alunos { grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; }
+            .coluna-impressao { border: 1px solid #94a3b8 !important; }
+            .coluna-impressao h4 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
@@ -164,7 +296,7 @@
     <header class="header-verde">
         <div class="logo-box" onclick="document.getElementById('file-logo-input').click()" title="Clique para alterar a logo">
             <img id="logo-exibicao" src="" alt="Logo do Colégio" style="display:none;" />
-            <span id="logo-placeholder" style="color:#7f8c8d; font-weight:bold; text-align:center; font-size:12px;">Espaço p/ Logo<br><small style="font-size:10px; color:#a0aec0;">(Clique p/ Inserir)</small></span>
+            <span id="logo-placeholder" style="color:#64748b; font-weight:600; text-align:center; font-size:11px;">Espaço p/ Logo<br><small style="font-size:9px; color:#94a3b8;">(Clique p/ Inserir)</small></span>
         </div>
         <input type="file" id="file-logo-input" accept="image/*" style="display:none;" onchange="carregarImagemLogo(event)">
 
@@ -174,22 +306,22 @@
         </div>
     </header>
 
-    <!-- NAVEGAÇÃO / ABAS (LINHAS 1 E 2) -->
+    <!-- NAVEGAÇÃO / ABAS -->
     <div class="nav-tabs-container">
         <!-- LINHA 1 -->
         <button class="tab-btn active" onclick="abrirAba('aba-classificacao-geral')">🏆 Classificação Geral</button>
-        <button class="tab-btn" onclick="abrirAba('aba-classificacao-turma')">📊 Classificação por Turma</button>
+        <button class="tab-btn" onclick="abrirAba('aba-classificacao-turma')">📊 Placar por Turma</button>
         <button class="tab-btn" onclick="abrirAba('aba-cadastrar-turmas')">🏫 Cadastrar Turmas</button>
         <button class="tab-btn" onclick="abrirAba('aba-alunos-turma')">👨‍🎓 Alunos por Turma</button>
-        <button class="tab-btn" onclick="abrirAba('aba-geral-cores')">🎨 Alunos por Cor (Geral)</button>
-        <button class="tab-btn" onclick="abrirAba('aba-lote-sorteio')">🎲 Lote e Sorteio</button>
+        <button class="tab-btn" onclick="abrirAba('aba-geral-cores')">🎨 Alunos por Cor</button>
+        <button class="tab-btn" onclick="abrirAba('aba-lote-sorteio')">🎲 Sorteio em Lote</button>
 
         <!-- LINHA 2 -->
         <button class="tab-btn" onclick="abrirAba('aba-provas')">🎯 Cadastrar Provas</button>
         <button class="tab-btn" onclick="abrirAba('aba-rodadas')">⚡ Lançar Rodadas</button>
         <button class="tab-btn" onclick="abrirAba('aba-arrecadacao')">📦 Arrecadação</button>
-        <button class="tab-btn" onclick="abrirAba('aba-boletim')">🖨️ Boletins Informativos</button>
-        <button class="tab-btn" onclick="abrirAba('aba-config')">✏️ Editar Cabeçalho</button>
+        <button class="tab-btn" onclick="abrirAba('aba-boletim')">🖨️ Relatórios e Impressão</button>
+        <button class="tab-btn" onclick="abrirAba('aba-config')">✏️ Configurações</button>
         <button class="tab-btn" onclick="window.print()">🖨️ Imprimir Tela</button>
     </div>
 
@@ -250,7 +382,7 @@
                         <option value="">Selecione...</option>
                     </select>
                 </div>
-                <div id="painel-detalhes-turma" style="display:none; background: #fdfdfd; border: 1px solid #f0f0f0; padding: 18px; border-radius: 10px; margin-top: 15px;">
+                <div id="painel-detalhes-turma" style="display:none; background: #f8fafc; border: 1px solid var(--cor-borda); padding: 22px; border-radius: 12px; margin-top: 15px;">
                     <div class="row-inline">
                         <div class="col-flex" style="flex: 2;">
                             <label>Nome do Aluno:</label>
@@ -267,8 +399,8 @@
                         </div>
                         <button class="btn-add" onclick="adicionarAlunoManual()">➕ Adicionar</button>
                     </div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin: 20px 0 10px 0;">
-                        <h3 id="titulo-turma-selecionada" style="color:var(--cor-verde-tema);">Alunos da Turma</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin: 24px 0 14px 0;">
+                        <h3 id="titulo-turma-selecionada" style="color:var(--cor-verde-primaria); font-size:16px;">Alunos da Turma</h3>
                         <button class="btn-refazer" onclick="refazerSorteioDaTurmaAtual()">🎲 Refazer Sorteio Desta Turma</button>
                     </div>
                     <div id="grid-cards-turma" class="grid-equipes"></div>
@@ -331,7 +463,7 @@
                     <div class="col-flex"><label>Pontos Azul:</label><input type="number" id="pts-azul" value="0"></div>
                 </div>
                 <button class="btn-add" onclick="salvarRodada()">💾 Registrar Pontuação</button>
-                <h3 style="margin-top:25px;">Histórico de Rodadas</h3>
+                <h3 style="margin-top:25px; font-size: 15px; color: var(--cor-texto-forte);">Histórico de Rodadas</h3>
                 <table>
                     <thead><tr><th>Turma</th><th>Prova</th><th>Verde</th><th>Amarelo</th><th>Vermelho</th><th>Azul</th><th>Ações</th></tr></thead>
                     <tbody id="tabela-rodadas-corpo"></tbody>
@@ -358,24 +490,36 @@
                     <div class="col-flex"><label>Pontos Azul:</label><input type="number" id="arr-azul" value="0"></div>
                 </div>
                 <button class="btn-add" onclick="salvarArrecadacao()">💾 Salvar Arrecadação</button>
-                <h3 style="margin-top:25px;">Registros de Arrecadação</h3>
+                <h3 style="margin-top:25px; font-size: 15px; color: var(--cor-texto-forte);">Registros de Arrecadação</h3>
                 <table>
                     <thead><tr><th>Turma</th><th>Descrição</th><th>Verde</th><th>Amarelo</th><th>Vermelho</th><th>Azul</th><th>Ações</th></tr></thead>
                     <tbody id="tabela-arrecadacao-corpo"></tbody>
                 </table>
             </div>
 
-            <!-- 10. BOLETIM INFORMATIVO -->
+            <!-- 10. RELATÓRIOS E IMPRESSÃO (NOVO RECURSO) -->
             <div id="aba-boletim" class="tab-content">
-                <div class="section-title">🖨️ Boletim Informativo de Desempenho</div>
-                <div class="form-group">
-                    <label>Selecione a Turma para Gerar o Boletim:</label>
-                    <select id="select-boletim-turma" onchange="gerarBoletim()"><option value="">Selecione...</option></select>
+                <div class="section-title">🖨️ Central de Impressão e Relatórios por Turma</div>
+                <div class="row-inline form-group no-print">
+                    <div class="col-flex">
+                        <label>Selecione a Turma:</label>
+                        <select id="select-boletim-turma" onchange="atualizarVisualizacaoImpressao()"><option value="">Selecione...</option></select>
+                    </div>
+                    <div class="col-flex">
+                        <label>Tipo de Relatório:</label>
+                        <select id="select-tipo-relatorio" onchange="atualizarVisualizacaoImpressao()">
+                            <option value="alunos">📄 Lista de Alunos por Cor/Equipe</option>
+                            <option value="placar">📊 Boletim de Pontuação Detalhado</option>
+                        </select>
+                    </div>
+                    <button class="btn-add" onclick="window.print()">🖨️ Imprimir Este Relatório</button>
                 </div>
-                <div id="painel-boletim-impressao" style="border: 1px solid #ccc; padding:20px; border-radius:10px; background:#fff; margin-top:15px; display:none;">
-                    <h2 id="boletim-titulo-turma" style="color:var(--cor-verde-tema); text-align:center;"></h2>
-                    <p style="text-align:center; color:#666; margin-bottom:20px;">Relatório Oficial de Pontuação e Equipes</p>
-                    <div id="boletim-conteudo-tabela"></div>
+
+                <div id="painel-boletim-impressao" style="border: 1px solid var(--cor-borda); padding:24px; border-radius:12px; background:#fff; margin-top:15px; display:none;">
+                    <h2 id="boletim-titulo-turma" style="color:var(--cor-verde-primaria); text-align:center;"></h2>
+                    <p id="boletim-subtitulo" style="text-align:center; color:var(--cor-texto-suave); margin-bottom:20px;"></p>
+                    
+                    <div id="boletim-conteudo-area"></div>
                 </div>
             </div>
 
@@ -502,7 +646,7 @@
             if (!tbody) return;
             tbody.innerHTML = '';
             dados.turmas.forEach(t => {
-                tbody.innerHTML += `<tr><td><strong>${t.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirTurma(${t.id})">🗑️ Excluir</button></td></tr>`;
+                tbody.innerHTML += `<tr><td><strong>${t.nome}</strong></td><td><button style="color:#ef4444; cursor:pointer; background:none; border:none; font-weight:600;" onclick="excluirTurma(${t.id})">🗑️ Excluir</button></td></tr>`;
             });
         }
 
@@ -641,7 +785,7 @@
             if (!tbody) return;
             tbody.innerHTML = '';
             dados.provas.forEach(p => {
-                tbody.innerHTML += `<tr><td><strong>${p.nome}</strong></td><td><button style="color:red; cursor:pointer;" onclick="excluirProva(${p.id})">🗑️ Excluir</button></td></tr>`;
+                tbody.innerHTML += `<tr><td><strong>${p.nome}</strong></td><td><button style="color:#ef4444; cursor:pointer; background:none; border:none; font-weight:600;" onclick="excluirProva(${p.id})">🗑️ Excluir</button></td></tr>`;
             });
         }
 
@@ -684,7 +828,7 @@
                 tbody.innerHTML += `<tr>
                     <td>${t.nome}</td><td>${p.nome}</td>
                     <td>${r.pontos.Verde}</td><td>${r.pontos.Amarelo}</td><td>${r.pontos.Vermelho}</td><td>${r.pontos.Azul}</td>
-                    <td><button style="color:red;" onclick="excluirRodada(${r.id})">🗑️</button></td>
+                    <td><button style="color:#ef4444; background:none; border:none; cursor:pointer;" onclick="excluirRodada(${r.id})">🗑️</button></td>
                 </tr>`;
             });
         }
@@ -728,7 +872,7 @@
                 tbody.innerHTML += `<tr>
                     <td>${t.nome}</td><td>${a.descricao}</td>
                     <td>${a.pontos.Verde}</td><td>${a.pontos.Amarelo}</td><td>${a.pontos.Vermelho}</td><td>${a.pontos.Azul}</td>
-                    <td><button style="color:red;" onclick="excluirArrecadacao(${a.id})">🗑️</button></td>
+                    <td><button style="color:#ef4444; background:none; border:none; cursor:pointer;" onclick="excluirArrecadacao(${a.id})">🗑️</button></td>
                 </tr>`;
             });
         }
@@ -780,33 +924,61 @@
             });
         }
 
-        /* BOLETIM */
-        function gerarBoletim() {
+        /* LÓGICA DE IMPRESSÃO DA TURMA E ALUNOS POR COR */
+        function atualizarVisualizacaoImpressao() {
             const id = document.getElementById('select-boletim-turma').value;
+            const tipo = document.getElementById('select-tipo-relatorio').value;
             const painel = document.getElementById('painel-boletim-impressao');
-            if(!id) return painel.style.display = 'none';
+            
+            if(!id) { painel.style.display = 'none'; return; }
 
             const turma = dados.turmas.find(t => t.id == id);
-            document.getElementById('boletim-titulo-turma').innerText = `Boletim da Turma: ${turma.nome}`;
+            if(!turma) return;
 
-            let html = `<table><thead><tr><th>Equipe</th><th>Alunos Cadastrados</th><th>Pontos Provas</th><th>Pontos Arrecadação</th><th>Total</th></tr></thead><tbody>`;
-
-            CORES.forEach(c => {
-                let qtdAlunos = (turma.alunos && turma.alunos[c]) ? turma.alunos[c].length : 0;
-                let ptsProvas = dados.rodadas.filter(r => r.turmaId == id).reduce((acc, r) => acc + (r.pontos[c] || 0), 0);
-                let ptsArr = dados.arrecadacao.filter(a => a.turmaId == id).reduce((acc, a) => acc + (a.pontos[c] || 0), 0);
-                html += `<tr>
-                    <td><strong>${c}</strong></td>
-                    <td>${qtdAlunos} alunos</td>
-                    <td>${ptsProvas}</td>
-                    <td>${ptsArr}</td>
-                    <td><strong>${ptsProvas + ptsArr} pts</strong></td>
-                </tr>`;
-            });
-
-            html += `</tbody></table>`;
-            document.getElementById('boletim-conteudo-tabela').innerHTML = html;
             painel.style.display = 'block';
+
+            if(tipo === 'alunos') {
+                document.getElementById('boletim-titulo-turma').innerText = `Relação de Alunos por Cor: ${turma.nome}`;
+                document.getElementById('boletim-subtitulo').innerText = 'Ficha Oficial de Distribuição das Equipes';
+
+                let html = `<div class="grid-impressao-alunos">`;
+                CORES.forEach(cor => {
+                    let lista = (turma.alunos && turma.alunos[cor]) ? turma.alunos[cor] : [];
+                    html += `<div class="coluna-impressao ${cor.toLowerCase()}">
+                        <h4>${cor} (${lista.length})</h4>
+                        <ol>`;
+                    if(lista.length === 0) {
+                        html += `<li style="list-style:none; opacity:0.6;">Nenhum aluno</li>`;
+                    } else {
+                        lista.forEach(aluno => { html += `<li>${aluno}</li>`; });
+                    }
+                    html += `</ol></div>`;
+                });
+                html += `</div>`;
+                document.getElementById('boletim-conteudo-area').innerHTML = html;
+
+            } else {
+                document.getElementById('boletim-titulo-turma').innerText = `Boletim de Pontuação: ${turma.nome}`;
+                document.getElementById('boletim-subtitulo').innerText = 'Relatório de Desempenho e Pontuação';
+
+                let html = `<table><thead><tr><th>Equipe</th><th>Alunos Cadastrados</th><th>Pontos Provas</th><th>Pontos Arrecadação</th><th>Total</th></tr></thead><tbody>`;
+
+                CORES.forEach(c => {
+                    let qtdAlunos = (turma.alunos && turma.alunos[c]) ? turma.alunos[c].length : 0;
+                    let ptsProvas = dados.rodadas.filter(r => r.turmaId == id).reduce((acc, r) => acc + (r.pontos[c] || 0), 0);
+                    let ptsArr = dados.arrecadacao.filter(a => a.turmaId == id).reduce((acc, a) => acc + (a.pontos[c] || 0), 0);
+                    html += `<tr>
+                        <td><strong>${c}</strong></td>
+                        <td>${qtdAlunos} alunos</td>
+                        <td>${ptsProvas}</td>
+                        <td>${ptsArr}</td>
+                        <td><strong>${ptsProvas + ptsArr} pts</strong></td>
+                    </tr>`;
+                });
+
+                html += `</tbody></table>`;
+                document.getElementById('boletim-conteudo-area').innerHTML = html;
+            }
         }
 
         /* CONFIGS */
